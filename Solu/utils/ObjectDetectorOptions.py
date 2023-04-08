@@ -13,26 +13,7 @@ Interpreter = tf.lite.Interpreter
 load_delegate = tf.lite.experimental.load_delegate
 
 
-class ObjectDetectorOptions(NamedTuple):
-  """A config to initialize an object detector."""
 
-  enable_edgetpu: bool = False
-  """Enable the model to run on EdgeTPU."""
-
-  label_allow_list: List[str] = None
-  """The optional allow list of labels."""
-
-  label_deny_list: List[str] = None
-  """The optional deny list of labels."""
-
-  max_results: int = -1
-  """The maximum number of top-scored detection results to return."""
-
-  num_threads: int = 4
-  """The number of CPU threads to be used."""
-
-  score_threshold: float = 0.25
-  """The score threshold of detection results to return."""
 
 
 class Rect(NamedTuple):
