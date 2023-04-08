@@ -11,6 +11,9 @@ import numpy as np
 def home():
     return render_template('home.html',title="Fungo",home="active")
 
-
-    
-       
+@app.route("/meetourteam")
+def meetour():
+    return render_template("meetourteam.html")
+@app.route("/measures")
+def measures():
+    return render_template("intro.html")
