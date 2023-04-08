@@ -4,6 +4,7 @@ from logging import debug
 from flask import request,render_template,url_for,redirect,request,abort,Response
 from Solu import app
 
+from Solu.utils import access_camera
 import numpy as np
 
 @app.route('/')
@@ -17,3 +18,11 @@ def meetour():
 @app.route("/measures")
 def measures():
     return render_template("intro.html")
+
+@app.route('/inference')    
+def inference():
+    return render_template('RealTimeInference.html')
+
+@app.route('/videofeed')
+def videofeed():
+    return Response(access_camera.gen_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
