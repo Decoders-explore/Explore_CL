@@ -237,3 +237,9 @@ h3{
 .footer-icon{
   padding: 0 1% 2%;
 }
+
+.navbar-a{
+  font-weight: 500;
+  color:white !important;
+  font-size:150%;
+}
