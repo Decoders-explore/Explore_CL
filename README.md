@@ -10,3 +10,6 @@ TFlite( for mobile)
 # Web
 HTML, CSS and js(jquery)
 most likely
+ 
+(Setup a virtual enviorment python -m venv Venv
+and then download requirment.txt )
