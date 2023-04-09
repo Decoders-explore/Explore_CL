@@ -59,7 +59,121 @@ class WebcamStream:
 
     # method called to stop reading frames
     def stop(self):
+        self.stopped = Truefrom traceback import print_tb
+2
+import cv2
+3
+import time
+4
+from Solu.utils.ObjectDetectorOptions import *
+5
+import numpy as np
+6
+from threading import Thread
+7
+​
+8
+DETECTION_THRESHOLD = 0.1
+9
+options = ObjectDetectorOptions(num_threads=4,
+10
+                                score_threshold=DETECTION_THRESHOLD)
+11
+detector = ObjectDetector(model_path="Solu/assets/plant.tflite", options=options)
+12
+​
+13
+class WebcamStream:
+14
+    def __init__(self, stream_id=0):
+15
+        self.stream_id = stream_id  # default is 0 for primary camera
+16
+​
+17
+        # opening video capture stream
+18
+        self.vcap = cv2.VideoCapture(self.stream_id)
+19
+        if self.vcap.isOpened() is False:
+20
+            print("[Exiting]: Error accessing webcam stream.")
+21
+            exit(0)
+22
+        fps_input_stream = int(self.vcap.get(5))
+23
+        print("FPS of webcam hardware/input stream: {}".format(fps_input_stream))
+24
+​
+25
+        # reading a single frame from vcap stream for initializing
+26
+        self.grabbed, self.frame = self.vcap.read()
+27
+        if self.grabbed is False:
+28
+            print('[Exiting] No more frames to read')
+29
+            exit(0)
+30
+​
+31
+        # self.stopped is set to False when frames are being read from self.vcap stream
+32
         self.stopped = True
+33
+​
+34
+        # reference to the thread for reading next available frame from input stream
+35
+        self.t = Thread(target=self.update, args=())
+36
+        self.t.daemon = True  # daemon threads keep running in the background while the program is executing
+37
+​
+38
+    # method for starting the thread for grabbing next available frame in input stream
+39
+    def start(self):
+40
+        self.stopped = False
+41
+        self.t.start()
+42
+​
+43
+        # method for reading next frame
+44
+​
+45
+    def update(self):
+46
+        while True:
+47
+            if self.stopped is True:
+48
+                break
+49
+            self.grabbed, self.frame = self.vcap.read()
+50
+            if self.grabbed is False:
+51
+                print('[Exiting] No more frames to read')
+52
+                self.stopped = True
+53
+                break
+54
+        self.vcap.release()
+55
+​
+56
+    # method for returning latest read frame
+57
+    def read(self):
+58
+        return self.frame
 
 def gen_frames():
     webcam_stream = WebcamStream(stream_id=0)  # stream_id = 0 is for primary camera
@@ -83,37 +197,7 @@ def gen_frames():
         except Exception as e:
             print(e)
 
-    # printing time elapsed and fps
 
-    # closing all windows
-
-#     cap = cv2.VideoCapture(0)
-#     while True:
-#         success, img = cap.read()
-#
-#         try:
-#             # cv2.imwrite('images.jpg', image)
-#             image =cv2.resize(img, (512, 512))
-#             # image = Image.open('images.jpg').convert('RGB')
-#             # image.thumbnail((512, 512), Image.ANTIALIAS)
-#             image_np = np.asarray(image)
-#             detections = detector.detect(image_np)
-#             image_np = visualize(image_np, detections)
-#             # cv2.imshow("SALUCHAN",cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB))
-#             frame = cv2.imencode('.jpg', image_np)[1]
-#
-#             # print(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-#             yield b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame.tobytes() + b'\r\n'
-#
-#             cv2.waitKey(1)
-#
-#         except Exception as e:
-#             print(e)
-#             break
-#     cap.release()
-#
-#
-# cv2.destroyAllWindows()
 
 
 gen_frames()
