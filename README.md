@@ -10,7 +10,7 @@
 ![Screenshot_2023-04-08-05-06-57_1920x1080](https://user-images.githubusercontent.com/69034460/230751658-2e0dd8a6-fe0e-484f-bf3b-6574f32b275f.png)
 ![Screenshot_2023-04-08-05-06-27_1920x1080](https://user-images.githubusercontent.com/69034460/230751661-c718f2f8-0430-49e9-8a9b-04b0538d19a9.png)
 
-# TEch-stack used
+# Tech-stack used
 Html,css(bootstrap)
 <br>
 Flask
@@ -18,3 +18,6 @@ Flask
 DEEP LEARNING
 <br>
 tensorflow,keras api
+
+#PPT
+
