@@ -19,6 +19,12 @@ DEEP LEARNING
 <br>
 tensorflow,keras api
 
-#PPT
+# dd
+* We built a plant disease detection website leveraging deep learning through Tensorflow model.
+* Flask is used for hosting the model on a React server.
+* The website allows the user to upload a picture of a leaf and then it determines whether the leaf is healthy or not. 
+* Keras a deep learning APi is used for implementing neural network and opencv is used for live detection of images.
+
+# PPT
 
 [Agrifarm.pdf](https://github.com/Decoders-explore/Explore_CL/files/12170919/Agrifarm.pdf)
