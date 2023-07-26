@@ -12,6 +12,9 @@
 
 # TEch-stack used
 Html,css(bootstrap)
+<br>
 Flask
+<br>
 DEEP LEARNING
+<br>
 tensorflow,keras api
