@@ -21,3 +21,4 @@ tensorflow,keras api
 
 #PPT
 
+[Agrifarm.pdf](https://github.com/Decoders-explore/Explore_CL/files/12170919/Agrifarm.pdf)
