@@ -19,7 +19,7 @@ DEEP LEARNING
 <br>
 tensorflow,keras api
 
-# dd
+# About our Website
 * We built a plant disease detection website leveraging deep learning through Tensorflow model.
 * Flask is used for hosting the model on a React server.
 * The website allows the user to upload a picture of a leaf and then it determines whether the leaf is healthy or not. 
